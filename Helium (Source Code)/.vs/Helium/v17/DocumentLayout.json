@@ -35,7 +35,7 @@
               "RelativeDocumentMoniker": "Helium\\Helium.cs",
               "ToolTip": "C:\\Users\\adant\\OneDrive\\Documents\\GitHub\\Helium\\Helium (Source Code)\\Helium\\Helium.cs",
               "RelativeToolTip": "Helium\\Helium.cs",
-              "ViewState": "AgIAAKUBAAAAAAAAAAAAAJcBAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAH4BAAAAAAAAAAAqwKUBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-05T01:56:40.073Z",
               "IsPinned": true,
@@ -55,10 +55,11 @@
               "Title": "Helium.cs [Design]",
               "DocumentMoniker": "C:\\Users\\adant\\OneDrive\\Documents\\GitHub\\Helium\\Helium (Source Code)\\Helium\\Helium.cs",
               "RelativeDocumentMoniker": "Helium\\Helium.cs",
-              "ToolTip": "C:\\Users\\adant\\OneDrive\\Documents\\GitHub\\Helium\\Helium (Source Code)\\Helium\\Helium.cs [Design]*",
-              "RelativeToolTip": "Helium\\Helium.cs [Design]*",
+              "ToolTip": "C:\\Users\\adant\\OneDrive\\Documents\\GitHub\\Helium\\Helium (Source Code)\\Helium\\Helium.cs [Design]",
+              "RelativeToolTip": "Helium\\Helium.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-09T20:58:58.672Z"
+              "WhenOpened": "2024-11-09T20:58:58.672Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
@@ -68,9 +69,10 @@
               "RelativeDocumentMoniker": "Helium\\Helium.Designer.cs",
               "ToolTip": "C:\\Users\\adant\\OneDrive\\Documents\\GitHub\\Helium\\Helium (Source Code)\\Helium\\Helium.Designer.cs",
               "RelativeToolTip": "Helium\\Helium.Designer.cs",
-              "ViewState": "AgIAAGcAAAAAAAAAAAASwLUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABQAAAAAAAAAAABRwBcAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-05T02:17:20.661Z"
+              "WhenOpened": "2024-11-05T02:17:20.661Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",

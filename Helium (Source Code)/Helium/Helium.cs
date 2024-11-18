@@ -13,6 +13,8 @@ using NHotkey;
 using NHotkey.WindowsForms;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Linq;
+using System.Data.SqlTypes;
 
 
 namespace Helium
@@ -36,15 +38,11 @@ namespace Helium
             pictureBox.Paint += PictureBox_Paint;
             pictureBox.MouseClick += PictureBox_MouseClick;
             pictureBox.MouseMove += PictureBox_MouseMove;
-            cameraLookJoystick.MouseDown += Joystick_MouseDown;
-            cameraLookJoystick.MouseMove += Joystick_MouseMove;
-            cameraLookJoystick.MouseUp += Joystick_MouseUp;
             //HeliumForm.MouseLeave += Joystick_MouseLeave;
 
 
 
-            // Set center point of joystick panel
-            joystickCenter = new Point(cameraLookJoystick.Width / 2, cameraLookJoystick.Height / 2);
+
 
 
             _hotkeyMap = new Dictionary<string, int>
@@ -67,6 +65,8 @@ namespace Helium
             proID.ForeColor = Color.White;
             Status.ForeColor = Color.White;
             HotKeysInfo.ForeColor = Color.White;
+            metroSetLabel1.ForeColor = Color.White;
+            metroSetLabel2.ForeColor = Color.White;
 
         }
 
@@ -162,6 +162,7 @@ namespace Helium
                 if (wasConnected)
                 {
                     wasConnected = false;
+                    scriptInjected = false;
                     hasReadMemory = false;  // Allow reading again in the future if the process gets disconnected.
                 }
             }
@@ -206,28 +207,26 @@ namespace Helium
 
         // From this point to the bottom is the main mod menu code
 
-        private int viewDistanceSlider = 50;
-        private float cameraMapX = 0;
-        private float cameraMapY = 0;
-        private float mappedX = 0;
-        private float mappedY = 0;
-        private float mappedZ = 0;
+        private double currentCameraLookAtX = 30;
+        private double currentCameraLookAtY = 30;
+        private double currentCameraLookAtZ = 70;
+        private double targetCameraLookAtX = 20;
+        private double targetCameraLookAtY = 20;
+        private double targetCameraLookAtZ = 70;
+        private double cameraMoveDirectionX;
+        private double cameraMoveDirectionY;
+        private double cameraMoveDirectionZ;
+        private double cameraMoveDistance;
 
-        private float lookAtX = 0;
-        private float lookAtY = 0;
-        private float lookAtZ = 0;
+        double currentCameraPitch = 30;
+        double currentCameraYaw = 30;
+        double targetCameraPitch = 20;
+        double targetCameraYaw = 20;
+        private double cameraRotateDirectionPitch;
+        private double cameraRotateDirectionYaw;
+        private double cameraRotateDistance;
 
-        private float cameraPositionX = 0;
-        private float cameraPositionY = 0;
-        private float cameraPositionZ = 0;
-
-        private float yaw = 0; // Yaw angle (rotation around z-axis)
-        private float pitch = 0; // Pitch angle (rotation around x-axis)
-        private float yawJoystick = 0; // Yaw angle (rotation around z-axis)
-        private float pitchJoystick = 0; // Yaw angle (rotation around z-axis)
-        private float rotationSpeed = 0.05f; // Speed of rotation per iteration
-        private float radius = 5; // Distance from the center point to rotating point
-
+        bool scriptInjected = false;
         private Timer _updateTimer;
 
         private void HeliumWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -243,67 +242,141 @@ namespace Helium
             CheckAndUpdateMemory();
         }
 
-        private float interpolationSpeed = 0.01f; // Adjust for faster or slower interpolation
-        private float rotationInterpolationSpeed = 0.01f; // Adjust for faster or slower interpolation
-
+        private double interpolationSpeed = 0.25f; // Adjust for faster or slower interpolation
+        private double rotationSpeed = 0.05f; // Adjust for faster or slower interpolation
+        string freecamFunctionEntry = "E9 5A 05 C7 00 0F 1F 40 00";
+        string freecamFunctionOriginal = "F3 0F 11 1E F3 0F 11 4E 04";
+        string freecamInjection = "F3 0F 10 1D 0F 90 6C 01 F3 0F 10 0D 1F 90 6C 01 F3 0F 10 05 2F 90 6C 01 50 8D 46 10 A3 3F 90 6C 01 58 F3 0F 11 1E F3 0F 11 4E 04 E9 7A FA 38 FF";
+        
+        
         private void CheckAndUpdateMemory()
         {
-            // Interpolate cameraMapX and cameraMapY towards mappedX and mappedY
-            cameraMapX += (mappedX - cameraMapX) * interpolationSpeed;
-            cameraMapY += (mappedY - cameraMapY) * interpolationSpeed;
-
-            // Only write to memory if values are close enough to the target
-            if (Math.Abs(cameraMapX - mappedX) > 0.2f || Math.Abs(cameraMapY - mappedY) > 0.2f)
+            if (FreecamSwitch.Switched == true)
             {
-                m.WriteMemory("Cubic.exe+27DB05", "float", cameraMapX.ToString());
-                m.WriteMemory("Cubic.exe+27DB09", "float", cameraMapY.ToString());
+                m.WriteMemory("Cubic.exe+1B8A80", "bytes", freecamFunctionEntry);
+                m.WriteMemory("Cubic.exe+E28FDF", "bytes", freecamInjection);  
+            }
+            else
+            {
+                m.WriteMemory("Cubic.exe+1B8A80", "bytes", freecamFunctionOriginal);
+            }
+            
+            if (scriptInjected == false && getStatus.Text == "CONNECTED") 
+            {
+                scriptInjected = true;
+                string cameraCoordinatesFunction = "90 90 90 90 90 90 90 90 90 90 90 90";
+                string cameraLookAtEditorInjection = "50 E8 00 00 00 00 58 F3 0F 10 58 29 F3 0F 10 48 2D F3 0F 10 40 31 58 50 8D 46 10 A3 1A 90 6C 01 58 F3 0F 11 1E F3 0F 11 4E 04 E9 7B FA 38 FF 00 00 00 00 00 00 00 00 00 00 8C 42 00 00 00 00";
+                string cameraLookAtEditorFunctionEntry = "E9 71 05 C7 00 0F 1F 40 00";
+                string cameraHeightInjection = "53 E8 00 00 00 00 5B F3 0F 5C 43 1B F3 0F 11 40 08 5B F3 0F 5C CB 8D 85 FC FE FF FF E9 72 34 39 FF 66 66 A6 3F";
+                string cameraHeightFunctionEntry = "E9 72 CB C6 00 0F 1F 44 00 00";
+                string unlockCameraArrowsInjection = "50 E8 00 00 00 00 58 F3 0F 10 58 2D 0F 2F D8 58 0F 86 AA F7 38 FF C7 86 EC 09 00 00 00 00 B2 C2 E9 9B F7 38 FF 0F 2F D8 0F 86 92 F7 38 FF E9 86 F7 38 FF 00 00 B2 C2";
+                string unlockCameraArrowsFunctionEntry = "E9 47 08 C7 00";
+                string unlockCameraRMBInjection = "50 E8 00 00 00 00 58 F3 0F 10 70 1F 0F 2F F1 58 0F 86 55 0E 3A FF C7 80 EC 09 00 00 00 00 B2 C2";
+                string unlockCameraRMBFunctionEntry = "E9 9C F1 C5 00";
+                string unlockCameraFOVInjection = "50 E8 00 00 00 00 58 0F 2F 48 2D F3 0F 11 48 31 F3 0F 10 48 31 58 F3 0F 11 8E E8 07 00 00 0F 86 EC 03 39 FF C7 86 E8 07 00 00 00 00 F0 42 E9 DD 03 39 FF 00 00 F0 42 00 00 70 42";
+                string unlockCameraFOVFunctionEntry = "E9 FE FB C6 00 66 90";
+                string getPlayerCoordinatesInjection = "50 E8 00 00 00 00 58 F3 0F 11 58 1F F3 0F 11 48 23 F3 0F 11 40 27 58 F3 0F 11 1E F3 0F 11 4E 04 E9 F3 FB 38 FF 22 8D 5B 42 52 D6 5B 42 F6 FF C1 42";
+                string getPlayerCoordinatesFunctionEntry = "E9 EC 03 C7 00 0F 1F 40 00";
+                string adjustCameraDistanceInjection = "50 E8 00 00 00 00 58 F3 0F 59 40 16 F3 0F 59 58 16 F3 0F 59 60 16 58 E9 08 00 00 00 00 00 B4 41";
+                string adjustCameraDistanceFunctionEntry = "E9 CC CD C6 00 0F 1F 40 00";
+                //string hidePlayerAvatar
+
+                m.WriteMemory("Cubic.exe+1BC1A5", "bytes", cameraCoordinatesFunction);
+                m.WriteMemory("Cubic.exe+E28FDF", "bytes", cameraLookAtEditorInjection);
+                m.WriteMemory("Cubic.exe+1B8A80", "bytes", cameraLookAtEditorFunctionEntry);
+                m.WriteMemory("Cubic.exe+E28D31", "bytes", cameraHeightInjection);
+                m.WriteMemory("Cubic.exe+1BC1BA", "bytes", cameraHeightFunctionEntry);
+                m.WriteMemory("Cubic.exe+E28D7A", "bytes", unlockCameraArrowsInjection);
+                m.WriteMemory("Cubic.exe+1B852E", "bytes", unlockCameraArrowsFunctionEntry);
+                m.WriteMemory("Cubic.exe+E28DC8", "bytes", unlockCameraRMBInjection);
+                m.WriteMemory("Cubic.exe+1C9C27", "bytes", unlockCameraRMBFunctionEntry);
+                m.WriteMemory("Cubic.exe+E28E05", "bytes", unlockCameraFOVInjection);
+                m.WriteMemory("Cubic.exe+1B9202", "bytes", unlockCameraFOVFunctionEntry);
+                m.WriteMemory("Cubic.exe+E28E71", "bytes", getPlayerCoordinatesInjection);
+                m.WriteMemory("Cubic.exe+1B8A80", "bytes", getPlayerCoordinatesFunctionEntry);
+                m.WriteMemory("Cubic.exe+E28F82", "bytes", adjustCameraDistanceInjection);
+                m.WriteMemory("Cubic.exe+1BC1B1", "bytes", adjustCameraDistanceFunctionEntry);
+            }
+
+            uint intRotationAddress = m.ReadUInt("Cubic.exe+E2903F");
+            string pitchAddress = (intRotationAddress+4).ToString("X");
+            string yawAddress = (intRotationAddress).ToString("X");
+            //Console.WriteLine(rotationAddress);
+
+            // Calculate the direction vector towards the target
+            cameraMoveDirectionX = targetCameraLookAtX - currentCameraLookAtX;
+            cameraMoveDirectionY = targetCameraLookAtY - currentCameraLookAtY;
+            cameraMoveDirectionZ = targetCameraLookAtZ - currentCameraLookAtZ;
+            //Normalize distance
+            cameraMoveDistance = Math.Sqrt(cameraMoveDirectionX * cameraMoveDirectionX + cameraMoveDirectionY * cameraMoveDirectionY + cameraMoveDirectionZ * cameraMoveDirectionZ);
+            
+            //Interpolate and move to target location
+            //Snap to target if close enough
+            if (cameraMoveDistance < interpolationSpeed) 
+            {
+                currentCameraLookAtX = targetCameraLookAtX;
+                currentCameraLookAtY = targetCameraLookAtY;
+                currentCameraLookAtZ = targetCameraLookAtZ;
+            }
+            else {
+                // Normalize the direction vector and move towards the target
+                currentCameraLookAtX += cameraMoveDirectionX / cameraMoveDistance * interpolationSpeed;
+                currentCameraLookAtY += cameraMoveDirectionY / cameraMoveDistance * interpolationSpeed;
+                currentCameraLookAtZ += cameraMoveDirectionZ / cameraMoveDistance * interpolationSpeed;
             }
 
 
-            float targetZ = 100 - CameraHeightSlider.Value;
-            // Interpolate mappedZ towards targetZ
-            mappedZ += (targetZ - mappedZ) * interpolationSpeed;
-            // Only write to memory if mappedZ is close enough to the target value
-            if (Math.Abs(mappedZ - targetZ) > 0.1f)
+            currentCameraPitch = m.ReadFloat(pitchAddress);
+            currentCameraYaw = m.ReadFloat(yawAddress);
+
+            // Calculate the direction vector towards the target
+            cameraRotateDirectionPitch = targetCameraPitch - currentCameraPitch;
+            cameraRotateDirectionYaw = targetCameraYaw - currentCameraYaw;
+            //Normalize distance
+            cameraRotateDistance = Math.Sqrt(cameraRotateDirectionPitch * cameraRotateDirectionPitch + cameraRotateDirectionYaw * cameraRotateDirectionYaw);
+
+            //Interpolate and move to target location
+            //Snap to target if close enough
+            if (cameraRotateDistance < rotationSpeed)
             {
-                m.WriteMemory("Cubic.exe+27DB0D", "float", mappedZ.ToString());
+                currentCameraPitch = targetCameraPitch;
+                currentCameraYaw = targetCameraYaw;
+            }
+            else
+            {
+                // Normalize the direction vector and move towards the target
+                currentCameraPitch += cameraRotateDirectionPitch / cameraRotateDistance * rotationSpeed;
+                currentCameraYaw += cameraRotateDirectionYaw / cameraRotateDistance * rotationSpeed;
             }
 
-            lookAtX = m.ReadFloat("Cubic.exe+27DB05");
-            lookAtY = m.ReadFloat("Cubic.exe+27DB09");
-            lookAtZ = m.ReadFloat("Cubic.exe+27DB0D");
-
-            cameraPositionX = lookAtX + (float)(radius * (Math.Cos(yaw) * Math.Cos(pitch)));
-            cameraPositionY = lookAtY + (float)(radius * (Math.Sin(yaw) * Math.Cos(pitch)));
-            cameraPositionZ = lookAtZ + (float)(radius * (Math.Sin(pitch)));
+            //Console.WriteLine(currentCameraPitch + " " + targetCameraPitch);
+            //currentCameraYaw += (targetCameraYaw - currentCameraYaw) * rotationSpeed;
+            //currentCameraPitch += (targetCameraPitch - currentCameraPitch) * rotationSpeed;
+            
 
 
-            yaw += (yawJoystick - yaw) * rotationInterpolationSpeed;
-            pitch += (pitchJoystick - pitch) * rotationInterpolationSpeed;
 
-            if (pitch * (180 / (float)Math.PI) >= 90)
+            m.WriteMemory("Cubic.exe+E2900F", "float", currentCameraLookAtX.ToString());
+            m.WriteMemory("Cubic.exe+E2901F", "float", currentCameraLookAtY.ToString());
+            m.WriteMemory("Cubic.exe+E2902F", "float", currentCameraLookAtZ.ToString());
+
+            if (FreecamSwitch.Switched == true && isAnimationPlaying == true)
             {
-                pitch = 89 / (float)(180 / Math.PI);
+                m.WriteMemory(pitchAddress, "float", currentCameraPitch.ToString());
+                m.WriteMemory(yawAddress, "float", currentCameraYaw.ToString());
             }
-            if (pitch * (180 / (float)Math.PI) <= -90)
-            {
-                pitch = -89 / (float)(180 / Math.PI);
-            }
+                
 
 
-            m.WriteMemory("Cubic.exe+27DB63", "float", cameraPositionX.ToString());
-            m.WriteMemory("Cubic.exe+27DB67", "float", cameraPositionY.ToString());
-            m.WriteMemory("Cubic.exe+27DB6B", "float", cameraPositionZ.ToString());
 
-            radius = (float)(RadiusSlider.Value);
-            Console.WriteLine(pitchJoystick + " " + pitch);
+
+            //Console.WriteLine(currentCameraLookAtX + " " + currentCameraLookAtY + " " + currentCameraLookAtZ);
+            UpdateLabel(cameraInfoLabel, $"PositionX: {currentCameraLookAtX:F2} PositionY: {currentCameraLookAtY:F2} PositionZ: {currentCameraLookAtZ:F2} Pitch: {currentCameraPitch:F2} Yaw: {currentCameraYaw:F2} ", Color.Red);
 
         }
 
-        private int dotSize = 5;  // Size of the dot
-        private Point lastClickedPoint = Point.Empty;  // Stores the last clicked position
-
-        // Draw the grid and the dot where last clicked
+        private int dotSize = 5;
+        private Point lastClickedPoint = Point.Empty;
         private void PictureBox_Paint(object sender, PaintEventArgs e)
         {
             // Draw the dot at the last clicked position
@@ -336,8 +409,8 @@ namespace Helium
             int y = Math.Max(dotSize / 2, Math.Min(mouseLocation.Y, (pictureBox.Height - (dotSize + 1) / 2 - 1)));
 
             // Map x and y to a range of 0 to 100 based on the PictureBox dimensions
-            mappedX = ((x - dotSize / 2) / (float)(pictureBox.Width - dotSize) * 100);
-            mappedY = ((y - dotSize / 2) / (float)(pictureBox.Height - dotSize) * 100);
+            targetCameraLookAtX = ((x - dotSize / 2) / (float)(pictureBox.Width - dotSize) * 100);
+            targetCameraLookAtY = ((y - dotSize / 2) / (float)(pictureBox.Height - dotSize) * 100);
 
             // Update the last clicked position and refresh the PictureBox
             lastClickedPoint = new Point(x, y);
@@ -347,76 +420,57 @@ namespace Helium
         private void Joystick_MouseDown(object sender, MouseEventArgs e)
         {
             isDragging = true;
+
+
         }
-
-        private void Joystick_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (!isDragging)
-            {
-                //yawJoystick = 0;
-                //pitchJoystick = 0;
-                return;
-            }
-
-            // Calculate offset from center
-            float offsetX = e.X - joystickCenter.X;
-            float offsetY = joystickCenter.Y - e.Y;
-
-            // Map offset to yaw and pitch
-            yawJoystick = yaw + (offsetX / (cameraLookJoystick.Width / 2) / 4);
-            pitchJoystick = pitch + (offsetY / (cameraLookJoystick.Height / 2) / 4);
-
-
-            // Optionally redraw joystick position
-            cameraLookJoystick.Invalidate();
-            //Console.WriteLine(yawJoystick  + " " + pitchJoystick);
-        }
-
-        private void Joystick_MouseUp(object sender, MouseEventArgs e)
-        {
-            isDragging = false;
-        }
-
-        private void Joystick_MouseLeave(object sender, EventArgs e)
-        {
-            isDragging = false;
-        }
-
+       
+        List<List<double>> animationFrames = new List<List<double>>();
+        bool isAnimationPlaying = false;
         private async void PlayAnimationButton_Click(object sender, EventArgs e)
         {
-            mappedX = 49;
-            mappedY = 81;
-            CameraHeightSlider.Value = 30;
-            interpolationSpeed = 0.1f;
-            rotationInterpolationSpeed = 0.1f;
-            yawJoystick = 0 * (float)(Math.PI / 180);
-            pitchJoystick = -88 * (float)(Math.PI / 180);
-            RadiusSlider.Value = 12;
+            isAnimationPlaying = true;
+            foreach (List<double> frame in animationFrames)
+            {
+                Console.WriteLine("a");
+                targetCameraLookAtX = frame[0];
+                targetCameraLookAtY = frame[1];
+                targetCameraLookAtZ = frame[2];
+                targetCameraPitch = frame[3];
+                targetCameraYaw = frame[4];
+                interpolationSpeed = frame[5]; 
+                rotationSpeed = frame[6];
 
-            await Task.Delay(2000);
+                await Task.Delay(100);
+                while (cameraMoveDistance > 0.5)
+                {
+                    await Task.Delay(100);
+                }
+            }
+            isAnimationPlaying = false;
+        }
 
-            CameraHeightSlider.Value = 10;
-            interpolationSpeed = 0.01f;
-            rotationInterpolationSpeed = 0.03f;
-            yawJoystick = 0 * (float)(Math.PI / 180);
-            pitchJoystick = -88 * (float)(Math.PI / 180);
+        private void CameraHeightSlider_Scroll(object sender)
+        {
+            targetCameraLookAtZ = 100 - CameraHeightSlider.Value;
+        }
 
-            await Task.Delay(3000);
+        private void CameraUp_Click(object sender, EventArgs e)
+        {
 
-            CameraHeightSlider.Value = 2;
-            //interpolationSpeed = 0.02f;
-            mappedX = 36;
-            interpolationSpeed = 0.006f;
-            rotationInterpolationSpeed = 0.008f;
-            yawJoystick = 0 * (float)(Math.PI / 180);
-            pitchJoystick = -10 * (float)(Math.PI / 180);
+        }
 
-            await Task.Delay(6000);
-
-
-            mappedX = 5;
-            mappedY = 81;
-            interpolationSpeed = 0.002f;
+        
+        private void AddAnimationFrameButton_Click(object sender, EventArgs e)
+        {
+            List<double> frame = new List<double>();
+            frame.Add(currentCameraLookAtX);
+            frame.Add(currentCameraLookAtY);
+            frame.Add(currentCameraLookAtZ);
+            frame.Add(currentCameraPitch);
+            frame.Add(currentCameraYaw);
+            frame.Add(interpolationSpeed);
+            frame.Add(rotationSpeed);
+            animationFrames.Add(frame);
         }
     }
 }

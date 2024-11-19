@@ -41,7 +41,7 @@ namespace Helium
             this.metroSetLabel7 = new MetroSet_UI.Controls.MetroSetLabel();
             this.metroSetTrackBar6 = new MetroSet_UI.Controls.MetroSetTrackBar();
             this.metroSetLabel8 = new MetroSet_UI.Controls.MetroSetLabel();
-            this.metroSetSwitch2 = new MetroSet_UI.Controls.MetroSetSwitch();
+            this.HidePlayerModelSwitch = new MetroSet_UI.Controls.MetroSetSwitch();
             this.Information = new System.Windows.Forms.TabPage();
             this.HotKeysInfo = new MetroSet_UI.Controls.MetroSetLabel();
             this.Status = new MetroSet_UI.Controls.MetroSetLabel();
@@ -50,15 +50,15 @@ namespace Helium
             this.proID = new MetroSet_UI.Controls.MetroSetLabel();
             this.procIDLabel = new MetroSet_UI.Controls.MetroSetLabel();
             this.Utility = new System.Windows.Forms.TabPage();
+            this.metroSetLabel2 = new MetroSet_UI.Controls.MetroSetLabel();
+            this.metroSetLabel1 = new MetroSet_UI.Controls.MetroSetLabel();
+            this.AddAnimationFrameButton = new MetroSet_UI.Controls.MetroSetButton();
+            this.FreecamSwitch = new MetroSet_UI.Controls.MetroSetSwitch();
             this.cameraInfoLabel = new MetroSet_UI.Controls.MetroSetLabel();
             this.PlayAnimationButton = new MetroSet_UI.Controls.MetroSetButton();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.CameraHeightSlider = new MetroSet_UI.Controls.MetroSetTrackBar();
             this.TabControl = new Sunny.UI.UITabControl();
-            this.FreecamSwitch = new MetroSet_UI.Controls.MetroSetSwitch();
-            this.AddAnimationFrameButton = new MetroSet_UI.Controls.MetroSetButton();
-            this.metroSetLabel1 = new MetroSet_UI.Controls.MetroSetLabel();
-            this.metroSetLabel2 = new MetroSet_UI.Controls.MetroSetLabel();
             this.CameraTweaks.SuspendLayout();
             this.Information.SuspendLayout();
             this.Utility.SuspendLayout();
@@ -107,7 +107,7 @@ namespace Helium
             this.CameraTweaks.Controls.Add(this.metroSetLabel7);
             this.CameraTweaks.Controls.Add(this.metroSetTrackBar6);
             this.CameraTweaks.Controls.Add(this.metroSetLabel8);
-            this.CameraTweaks.Controls.Add(this.metroSetSwitch2);
+            this.CameraTweaks.Controls.Add(this.HidePlayerModelSwitch);
             this.CameraTweaks.ForeColor = System.Drawing.Color.White;
             this.CameraTweaks.Location = new System.Drawing.Point(0, 30);
             this.CameraTweaks.Name = "CameraTweaks";
@@ -242,35 +242,35 @@ namespace Helium
             this.metroSetLabel8.Style = MetroSet_UI.Enums.Style.Light;
             this.metroSetLabel8.StyleManager = null;
             this.metroSetLabel8.TabIndex = 12;
-            this.metroSetLabel8.Text = "First Person Perspective";
+            this.metroSetLabel8.Text = "Hide Player Model";
             this.metroSetLabel8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.metroSetLabel8.ThemeAuthor = "Narwin";
             this.metroSetLabel8.ThemeName = "MetroLite";
             // 
-            // metroSetSwitch2
+            // HidePlayerModelSwitch
             // 
-            this.metroSetSwitch2.BackColor = System.Drawing.Color.Transparent;
-            this.metroSetSwitch2.BackgroundColor = System.Drawing.Color.Empty;
-            this.metroSetSwitch2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(147)))));
-            this.metroSetSwitch2.CheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.metroSetSwitch2.CheckState = MetroSet_UI.Enums.CheckState.Unchecked;
-            this.metroSetSwitch2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.metroSetSwitch2.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
-            this.metroSetSwitch2.DisabledCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.metroSetSwitch2.DisabledUnCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
-            this.metroSetSwitch2.IsDerivedStyle = true;
-            this.metroSetSwitch2.Location = new System.Drawing.Point(14, 13);
-            this.metroSetSwitch2.Name = "metroSetSwitch2";
-            this.metroSetSwitch2.Size = new System.Drawing.Size(58, 22);
-            this.metroSetSwitch2.Style = MetroSet_UI.Enums.Style.Light;
-            this.metroSetSwitch2.StyleManager = null;
-            this.metroSetSwitch2.Switched = false;
-            this.metroSetSwitch2.SymbolColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
-            this.metroSetSwitch2.TabIndex = 11;
-            this.metroSetSwitch2.Text = "metroSetSwitch2";
-            this.metroSetSwitch2.ThemeAuthor = "Narwin";
-            this.metroSetSwitch2.ThemeName = "MetroLite";
-            this.metroSetSwitch2.UnCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
+            this.HidePlayerModelSwitch.BackColor = System.Drawing.Color.Transparent;
+            this.HidePlayerModelSwitch.BackgroundColor = System.Drawing.Color.Empty;
+            this.HidePlayerModelSwitch.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(147)))));
+            this.HidePlayerModelSwitch.CheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.HidePlayerModelSwitch.CheckState = MetroSet_UI.Enums.CheckState.Unchecked;
+            this.HidePlayerModelSwitch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.HidePlayerModelSwitch.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            this.HidePlayerModelSwitch.DisabledCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.HidePlayerModelSwitch.DisabledUnCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            this.HidePlayerModelSwitch.IsDerivedStyle = true;
+            this.HidePlayerModelSwitch.Location = new System.Drawing.Point(14, 13);
+            this.HidePlayerModelSwitch.Name = "HidePlayerModelSwitch";
+            this.HidePlayerModelSwitch.Size = new System.Drawing.Size(58, 22);
+            this.HidePlayerModelSwitch.Style = MetroSet_UI.Enums.Style.Light;
+            this.HidePlayerModelSwitch.StyleManager = null;
+            this.HidePlayerModelSwitch.Switched = false;
+            this.HidePlayerModelSwitch.SymbolColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
+            this.HidePlayerModelSwitch.TabIndex = 11;
+            this.HidePlayerModelSwitch.Text = "metroSetSwitch2";
+            this.HidePlayerModelSwitch.ThemeAuthor = "Narwin";
+            this.HidePlayerModelSwitch.ThemeName = "MetroLite";
+            this.HidePlayerModelSwitch.UnCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
             // 
             // Information
             // 
@@ -397,6 +397,86 @@ namespace Helium
             this.Utility.TabIndex = 0;
             this.Utility.Text = "Utility";
             // 
+            // metroSetLabel2
+            // 
+            this.metroSetLabel2.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metroSetLabel2.IsDerivedStyle = true;
+            this.metroSetLabel2.Location = new System.Drawing.Point(356, 166);
+            this.metroSetLabel2.Name = "metroSetLabel2";
+            this.metroSetLabel2.Size = new System.Drawing.Size(121, 23);
+            this.metroSetLabel2.Style = MetroSet_UI.Enums.Style.Light;
+            this.metroSetLabel2.StyleManager = null;
+            this.metroSetLabel2.TabIndex = 20;
+            this.metroSetLabel2.Text = "Play Animation";
+            this.metroSetLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.metroSetLabel2.ThemeAuthor = "Narwin";
+            this.metroSetLabel2.ThemeName = "MetroLite";
+            // 
+            // metroSetLabel1
+            // 
+            this.metroSetLabel1.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metroSetLabel1.IsDerivedStyle = true;
+            this.metroSetLabel1.Location = new System.Drawing.Point(211, 166);
+            this.metroSetLabel1.Name = "metroSetLabel1";
+            this.metroSetLabel1.Size = new System.Drawing.Size(85, 23);
+            this.metroSetLabel1.Style = MetroSet_UI.Enums.Style.Light;
+            this.metroSetLabel1.StyleManager = null;
+            this.metroSetLabel1.TabIndex = 19;
+            this.metroSetLabel1.Text = "Add Frame";
+            this.metroSetLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.metroSetLabel1.ThemeAuthor = "Narwin";
+            this.metroSetLabel1.ThemeName = "MetroLite";
+            // 
+            // AddAnimationFrameButton
+            // 
+            this.AddAnimationFrameButton.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.AddAnimationFrameButton.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.AddAnimationFrameButton.DisabledForeColor = System.Drawing.Color.Gray;
+            this.AddAnimationFrameButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.AddAnimationFrameButton.HoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
+            this.AddAnimationFrameButton.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
+            this.AddAnimationFrameButton.HoverTextColor = System.Drawing.Color.White;
+            this.AddAnimationFrameButton.IsDerivedStyle = true;
+            this.AddAnimationFrameButton.Location = new System.Drawing.Point(211, 140);
+            this.AddAnimationFrameButton.Name = "AddAnimationFrameButton";
+            this.AddAnimationFrameButton.NormalBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.AddAnimationFrameButton.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.AddAnimationFrameButton.NormalTextColor = System.Drawing.Color.White;
+            this.AddAnimationFrameButton.PressBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
+            this.AddAnimationFrameButton.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
+            this.AddAnimationFrameButton.PressTextColor = System.Drawing.Color.White;
+            this.AddAnimationFrameButton.Size = new System.Drawing.Size(75, 23);
+            this.AddAnimationFrameButton.Style = MetroSet_UI.Enums.Style.Light;
+            this.AddAnimationFrameButton.StyleManager = null;
+            this.AddAnimationFrameButton.TabIndex = 8;
+            this.AddAnimationFrameButton.ThemeAuthor = "Narwin";
+            this.AddAnimationFrameButton.ThemeName = "MetroLite";
+            this.AddAnimationFrameButton.Click += new System.EventHandler(this.AddAnimationFrameButton_Click);
+            // 
+            // FreecamSwitch
+            // 
+            this.FreecamSwitch.BackColor = System.Drawing.Color.Transparent;
+            this.FreecamSwitch.BackgroundColor = System.Drawing.Color.Empty;
+            this.FreecamSwitch.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(147)))));
+            this.FreecamSwitch.CheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.FreecamSwitch.CheckState = MetroSet_UI.Enums.CheckState.Unchecked;
+            this.FreecamSwitch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.FreecamSwitch.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            this.FreecamSwitch.DisabledCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.FreecamSwitch.DisabledUnCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            this.FreecamSwitch.IsDerivedStyle = true;
+            this.FreecamSwitch.Location = new System.Drawing.Point(211, 27);
+            this.FreecamSwitch.Name = "FreecamSwitch";
+            this.FreecamSwitch.Size = new System.Drawing.Size(58, 22);
+            this.FreecamSwitch.Style = MetroSet_UI.Enums.Style.Light;
+            this.FreecamSwitch.StyleManager = null;
+            this.FreecamSwitch.Switched = false;
+            this.FreecamSwitch.SymbolColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
+            this.FreecamSwitch.TabIndex = 7;
+            this.FreecamSwitch.ThemeAuthor = "Narwin";
+            this.FreecamSwitch.ThemeName = "MetroLite";
+            this.FreecamSwitch.UnCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
+            // 
             // cameraInfoLabel
             // 
             this.cameraInfoLabel.Font = new System.Drawing.Font("Impact", 11.25F);
@@ -496,86 +576,6 @@ namespace Helium
             this.TabControl.TabSelectedHighColorSize = 2;
             this.TabControl.TipsFont = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             // 
-            // FreecamSwitch
-            // 
-            this.FreecamSwitch.BackColor = System.Drawing.Color.Transparent;
-            this.FreecamSwitch.BackgroundColor = System.Drawing.Color.Empty;
-            this.FreecamSwitch.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(159)))), ((int)(((byte)(147)))));
-            this.FreecamSwitch.CheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.FreecamSwitch.CheckState = MetroSet_UI.Enums.CheckState.Unchecked;
-            this.FreecamSwitch.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.FreecamSwitch.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
-            this.FreecamSwitch.DisabledCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.FreecamSwitch.DisabledUnCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
-            this.FreecamSwitch.IsDerivedStyle = true;
-            this.FreecamSwitch.Location = new System.Drawing.Point(211, 27);
-            this.FreecamSwitch.Name = "FreecamSwitch";
-            this.FreecamSwitch.Size = new System.Drawing.Size(58, 22);
-            this.FreecamSwitch.Style = MetroSet_UI.Enums.Style.Light;
-            this.FreecamSwitch.StyleManager = null;
-            this.FreecamSwitch.Switched = false;
-            this.FreecamSwitch.SymbolColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(92)))), ((int)(((byte)(92)))));
-            this.FreecamSwitch.TabIndex = 7;
-            this.FreecamSwitch.ThemeAuthor = "Narwin";
-            this.FreecamSwitch.ThemeName = "MetroLite";
-            this.FreecamSwitch.UnCheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
-            // 
-            // AddAnimationFrameButton
-            // 
-            this.AddAnimationFrameButton.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.AddAnimationFrameButton.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.AddAnimationFrameButton.DisabledForeColor = System.Drawing.Color.Gray;
-            this.AddAnimationFrameButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.AddAnimationFrameButton.HoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
-            this.AddAnimationFrameButton.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
-            this.AddAnimationFrameButton.HoverTextColor = System.Drawing.Color.White;
-            this.AddAnimationFrameButton.IsDerivedStyle = true;
-            this.AddAnimationFrameButton.Location = new System.Drawing.Point(211, 140);
-            this.AddAnimationFrameButton.Name = "AddAnimationFrameButton";
-            this.AddAnimationFrameButton.NormalBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.AddAnimationFrameButton.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.AddAnimationFrameButton.NormalTextColor = System.Drawing.Color.White;
-            this.AddAnimationFrameButton.PressBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
-            this.AddAnimationFrameButton.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
-            this.AddAnimationFrameButton.PressTextColor = System.Drawing.Color.White;
-            this.AddAnimationFrameButton.Size = new System.Drawing.Size(75, 23);
-            this.AddAnimationFrameButton.Style = MetroSet_UI.Enums.Style.Light;
-            this.AddAnimationFrameButton.StyleManager = null;
-            this.AddAnimationFrameButton.TabIndex = 8;
-            this.AddAnimationFrameButton.ThemeAuthor = "Narwin";
-            this.AddAnimationFrameButton.ThemeName = "MetroLite";
-            this.AddAnimationFrameButton.Click += new System.EventHandler(this.AddAnimationFrameButton_Click);
-            // 
-            // metroSetLabel1
-            // 
-            this.metroSetLabel1.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.metroSetLabel1.IsDerivedStyle = true;
-            this.metroSetLabel1.Location = new System.Drawing.Point(211, 166);
-            this.metroSetLabel1.Name = "metroSetLabel1";
-            this.metroSetLabel1.Size = new System.Drawing.Size(85, 23);
-            this.metroSetLabel1.Style = MetroSet_UI.Enums.Style.Light;
-            this.metroSetLabel1.StyleManager = null;
-            this.metroSetLabel1.TabIndex = 19;
-            this.metroSetLabel1.Text = "Add Frame";
-            this.metroSetLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.metroSetLabel1.ThemeAuthor = "Narwin";
-            this.metroSetLabel1.ThemeName = "MetroLite";
-            // 
-            // metroSetLabel2
-            // 
-            this.metroSetLabel2.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.metroSetLabel2.IsDerivedStyle = true;
-            this.metroSetLabel2.Location = new System.Drawing.Point(356, 166);
-            this.metroSetLabel2.Name = "metroSetLabel2";
-            this.metroSetLabel2.Size = new System.Drawing.Size(121, 23);
-            this.metroSetLabel2.Style = MetroSet_UI.Enums.Style.Light;
-            this.metroSetLabel2.StyleManager = null;
-            this.metroSetLabel2.TabIndex = 20;
-            this.metroSetLabel2.Text = "Play Animation";
-            this.metroSetLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.metroSetLabel2.ThemeAuthor = "Narwin";
-            this.metroSetLabel2.ThemeName = "MetroLite";
-            // 
             // HeliumForm
             // 
             this.AllowResize = false;
@@ -626,7 +626,7 @@ namespace Helium
         private MetroSet_UI.Controls.MetroSetLabel metroSetLabel7;
         private MetroSet_UI.Controls.MetroSetTrackBar metroSetTrackBar6;
         private MetroSet_UI.Controls.MetroSetLabel metroSetLabel8;
-        private MetroSet_UI.Controls.MetroSetSwitch metroSetSwitch2;
+        private MetroSet_UI.Controls.MetroSetSwitch HidePlayerModelSwitch;
         private System.Windows.Forms.TabPage Information;
         private MetroSet_UI.Controls.MetroSetLabel HotKeysInfo;
         private MetroSet_UI.Controls.MetroSetLabel Status;

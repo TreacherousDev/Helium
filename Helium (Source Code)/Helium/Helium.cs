@@ -243,44 +243,51 @@ namespace Helium
         }
 
         private double interpolationSpeed = 0.25f; // Adjust for faster or slower interpolation
-        private double rotationSpeed = 0.05f; // Adjust for faster or slower interpolation
-        string freecamFunctionEntry = "E9 5A 05 C7 00 0F 1F 40 00";
-        string freecamFunctionOriginal = "F3 0F 11 1E F3 0F 11 4E 04";
-        string freecamInjection = "F3 0F 10 1D 0F 90 6C 01 F3 0F 10 0D 1F 90 6C 01 F3 0F 10 05 2F 90 6C 01 50 8D 46 10 A3 3F 90 6C 01 58 F3 0F 11 1E F3 0F 11 4E 04 E9 7A FA 38 FF";
+        private double rotationSpeed = 5f; // Adjust for faster or slower interpolation
+
+        // Persistent Functions (Required for the engine to function)
+        readonly string cameraCoordinatesFunction = "90 90 90 90 90 90 90 90 90 90 90 90";
+        readonly string cameraHeightInjection = "53 E8 00 00 00 00 5B F3 0F 5C 43 1B F3 0F 11 40 08 5B F3 0F 5C CB 8D 85 FC FE FF FF E9 72 34 39 FF 66 66 A6 3F";
+        readonly string cameraHeightFunctionEntry = "E9 72 CB C6 00 0F 1F 44 00 00";
+
+        readonly string unlockCameraArrowsInjection = "50 E8 00 00 00 00 58 F3 0F 10 58 2D 0F 2F D8 58 0F 86 AA F7 38 FF C7 86 EC 09 00 00 00 00 B2 C2 E9 9B F7 38 FF 0F 2F D8 0F 86 92 F7 38 FF E9 86 F7 38 FF 00 00 B2 C2";
+        readonly string unlockCameraArrowsFunctionEntry = "E9 47 08 C7 00";
+
+        readonly string unlockCameraRMBInjection = "50 E8 00 00 00 00 58 F3 0F 10 70 1F 0F 2F F1 58 0F 86 55 0E 3A FF C7 80 EC 09 00 00 00 00 B2 C2";
+        readonly string unlockCameraRMBFunctionEntry = "E9 9C F1 C5 00";
+
+        readonly string unlockCameraFOVInjection = "50 E8 00 00 00 00 58 0F 2F 48 2D F3 0F 11 48 31 F3 0F 10 48 31 58 F3 0F 11 8E E8 07 00 00 0F 86 EC 03 39 FF C7 86 E8 07 00 00 00 00 F0 42 E9 DD 03 39 FF 00 00 F0 42 00 00 70 42";
+        readonly string unlockCameraFOVFunctionEntry = "E9 FE FB C6 00 66 90";
+
+        readonly string getPlayerCoordinatesInjection = "50 E8 00 00 00 00 58 F3 0F 11 58 1F F3 0F 11 48 23 F3 0F 11 40 27 58 F3 0F 11 1E F3 0F 11 4E 04 E9 F3 FB 38 FF 22 8D 5B 42 52 D6 5B 42 F6 FF C1 42";
+        readonly string getPlayerCoordinatesFunctionEntry = "E9 EC 03 C7 00 0F 1F 40 00";
+
+        readonly string adjustCameraDistanceInjection = "50 E8 00 00 00 00 58 F3 0F 59 40 16 F3 0F 59 58 16 F3 0F 59 60 16 58 E9 08 00 00 00 00 00 B4 41";
+        readonly string adjustCameraDistanceFunctionEntry = "E9 CC CD C6 00 0F 1F 40 00";
+
+        // Revertable functions (Optional switch states available)
+        //readonly string freecamInjection = "F3 0F 10 1D 0F 90 6C 01 F3 0F 10 0D 1F 90 6C 01 F3 0F 10 05 2F 90 6C 01 50 8D 46 10 A3 3F 90 6C 01 58 F3 0F 11 1E F3 0F 11 4E 04 E9 7A FA 38 FF";
+        //readonly string freecamFunctionEntry = "E9 5A 05 C7 00 0F 1F 40 00";
+        //readonly string freecamFunctionOriginal = "F3 0F 11 1E F3 0F 11 4E 04";
+
+        readonly string cameraLookAtEditorInjection = "50 E8 00 00 00 00 58 F3 0F 10 58 29 F3 0F 10 48 2D F3 0F 10 40 31 58 50 8D 46 10 A3 1A 90 6C 01 58 F3 0F 11 1E F3 0F 11 4E 04 E9 7B FA 38 FF 00 00 00 00 00 00 00 00 00 00 8C 42 00 00 00 00";
+        readonly string cameraLookAtEditorFunctionEntry = "E9 71 05 C7 00 0F 1F 40 00";
+        readonly string cameraLookAtEditorFunctionOriginal = "E9 5A 05 C7 00 0F 1F 40 00";
+
+        readonly string hidePlayerAvatarInjection = "53 E8 00 00 00 00 5B F3 0F 10 7D 08 F3 0F 5C 7B B9 50 F3 0F 11 7B 65 8B 43 65 23 43 5D 66 0F 6E F8 58 0F 2E 7B 61 0F 83 2C 00 00 00 F3 0F 10 7D 0C F3 0F 5C 7B BD 50 F3 0F 11 7B 65 8B 43 65 23 43 5D 66 0F 6E F8 58 0F 2E 7B 61 0F 83 07 00 00 00 C7 45 10 00 00 C8 C2 5B F3 0F 10 45 10 E9 C3 64 37 FF FF FF FF 7F 9A 99 99 3E 18 7A 91 C0";
+        readonly string hidePlayerAvatarFunctionEntry = "E9 DA 9A C8 00";
+        readonly string hidePlayerAvatarFunctionOriginal = "F3 0F 10 45 10";
+
         
-        
+
+        private bool isFreecamEnabled = false;
+        private bool isHidePlayerModelEnabled = false;
         private void CheckAndUpdateMemory()
         {
-            if (FreecamSwitch.Switched == true)
-            {
-                m.WriteMemory("Cubic.exe+1B8A80", "bytes", freecamFunctionEntry);
-                m.WriteMemory("Cubic.exe+E28FDF", "bytes", freecamInjection);  
-            }
-            else
-            {
-                m.WriteMemory("Cubic.exe+1B8A80", "bytes", freecamFunctionOriginal);
-            }
-            
-            if (scriptInjected == false && getStatus.Text == "CONNECTED") 
+            //initial injection script that lays the foundation for the UI to access the camera settings addresses
+            if (scriptInjected == false && getStatus.Text == "CONNECTED")
             {
                 scriptInjected = true;
-                string cameraCoordinatesFunction = "90 90 90 90 90 90 90 90 90 90 90 90";
-                string cameraLookAtEditorInjection = "50 E8 00 00 00 00 58 F3 0F 10 58 29 F3 0F 10 48 2D F3 0F 10 40 31 58 50 8D 46 10 A3 1A 90 6C 01 58 F3 0F 11 1E F3 0F 11 4E 04 E9 7B FA 38 FF 00 00 00 00 00 00 00 00 00 00 8C 42 00 00 00 00";
-                string cameraLookAtEditorFunctionEntry = "E9 71 05 C7 00 0F 1F 40 00";
-                string cameraHeightInjection = "53 E8 00 00 00 00 5B F3 0F 5C 43 1B F3 0F 11 40 08 5B F3 0F 5C CB 8D 85 FC FE FF FF E9 72 34 39 FF 66 66 A6 3F";
-                string cameraHeightFunctionEntry = "E9 72 CB C6 00 0F 1F 44 00 00";
-                string unlockCameraArrowsInjection = "50 E8 00 00 00 00 58 F3 0F 10 58 2D 0F 2F D8 58 0F 86 AA F7 38 FF C7 86 EC 09 00 00 00 00 B2 C2 E9 9B F7 38 FF 0F 2F D8 0F 86 92 F7 38 FF E9 86 F7 38 FF 00 00 B2 C2";
-                string unlockCameraArrowsFunctionEntry = "E9 47 08 C7 00";
-                string unlockCameraRMBInjection = "50 E8 00 00 00 00 58 F3 0F 10 70 1F 0F 2F F1 58 0F 86 55 0E 3A FF C7 80 EC 09 00 00 00 00 B2 C2";
-                string unlockCameraRMBFunctionEntry = "E9 9C F1 C5 00";
-                string unlockCameraFOVInjection = "50 E8 00 00 00 00 58 0F 2F 48 2D F3 0F 11 48 31 F3 0F 10 48 31 58 F3 0F 11 8E E8 07 00 00 0F 86 EC 03 39 FF C7 86 E8 07 00 00 00 00 F0 42 E9 DD 03 39 FF 00 00 F0 42 00 00 70 42";
-                string unlockCameraFOVFunctionEntry = "E9 FE FB C6 00 66 90";
-                string getPlayerCoordinatesInjection = "50 E8 00 00 00 00 58 F3 0F 11 58 1F F3 0F 11 48 23 F3 0F 11 40 27 58 F3 0F 11 1E F3 0F 11 4E 04 E9 F3 FB 38 FF 22 8D 5B 42 52 D6 5B 42 F6 FF C1 42";
-                string getPlayerCoordinatesFunctionEntry = "E9 EC 03 C7 00 0F 1F 40 00";
-                string adjustCameraDistanceInjection = "50 E8 00 00 00 00 58 F3 0F 59 40 16 F3 0F 59 58 16 F3 0F 59 60 16 58 E9 08 00 00 00 00 00 B4 41";
-                string adjustCameraDistanceFunctionEntry = "E9 CC CD C6 00 0F 1F 40 00";
-                //string hidePlayerAvatar
-
                 m.WriteMemory("Cubic.exe+1BC1A5", "bytes", cameraCoordinatesFunction);
                 m.WriteMemory("Cubic.exe+E28FDF", "bytes", cameraLookAtEditorInjection);
                 m.WriteMemory("Cubic.exe+1B8A80", "bytes", cameraLookAtEditorFunctionEntry);
@@ -296,10 +303,40 @@ namespace Helium
                 m.WriteMemory("Cubic.exe+1B8A80", "bytes", getPlayerCoordinatesFunctionEntry);
                 m.WriteMemory("Cubic.exe+E28F82", "bytes", adjustCameraDistanceInjection);
                 m.WriteMemory("Cubic.exe+1BC1B1", "bytes", adjustCameraDistanceFunctionEntry);
+
+                //Revertable, injections only as set to false by default
+                m.WriteMemory("Cubic.exe+E28ED7", "bytes", hidePlayerAvatarInjection);
             }
 
-            uint intRotationAddress = m.ReadUInt("Cubic.exe+E2903F");
-            string pitchAddress = (intRotationAddress+4).ToString("X");
+            if (FreecamSwitch.Switched != isFreecamEnabled)
+            {
+                isFreecamEnabled = FreecamSwitch.Switched;
+                if (isFreecamEnabled == true)
+                {
+                    m.WriteMemory("Cubic.exe+1B8A80", "bytes", cameraLookAtEditorFunctionOriginal);   
+                }
+                else
+                {
+                    m.WriteMemory("Cubic.exe+1B8A80", "bytes", cameraLookAtEditorFunctionEntry);
+                }             
+            }
+
+            if (HidePlayerModelSwitch.Switched != isHidePlayerModelEnabled) 
+            {
+                isHidePlayerModelEnabled = HidePlayerModelSwitch.Switched;
+                if (isHidePlayerModelEnabled == true)
+                {
+                    m.WriteMemory("Cubic.exe+19F3F8", "bytes", hidePlayerAvatarFunctionEntry);
+                }
+                else
+                {
+                    m.WriteMemory("Cubic.exe+19F3F8", "bytes", hidePlayerAvatarFunctionOriginal);
+                }
+            }
+            
+
+            uint intRotationAddress = m.ReadUInt("Cubic.exe+E2901A");
+            string pitchAddress = (intRotationAddress + 4).ToString("X");
             string yawAddress = (intRotationAddress).ToString("X");
             //Console.WriteLine(rotationAddress);
 
@@ -354,16 +391,16 @@ namespace Helium
             //currentCameraPitch += (targetCameraPitch - currentCameraPitch) * rotationSpeed;
             
 
-
-
-            m.WriteMemory("Cubic.exe+E2900F", "float", currentCameraLookAtX.ToString());
-            m.WriteMemory("Cubic.exe+E2901F", "float", currentCameraLookAtY.ToString());
-            m.WriteMemory("Cubic.exe+E2902F", "float", currentCameraLookAtZ.ToString());
-
-            if (FreecamSwitch.Switched == true && isAnimationPlaying == true)
+            if (FreecamSwitch.Switched == true)
             {
-                m.WriteMemory(pitchAddress, "float", currentCameraPitch.ToString());
-                m.WriteMemory(yawAddress, "float", currentCameraYaw.ToString());
+                if (isAnimationPlaying == true)
+                {
+                    m.WriteMemory(pitchAddress, "float", currentCameraPitch.ToString());
+                    m.WriteMemory(yawAddress, "float", currentCameraYaw.ToString());
+                }
+                m.WriteMemory("Cubic.exe+E2900E", "float", currentCameraLookAtX.ToString());
+                m.WriteMemory("Cubic.exe+E29012", "float", currentCameraLookAtY.ToString());
+                m.WriteMemory("Cubic.exe+E29016", "float", currentCameraLookAtZ.ToString());
             }
                 
 

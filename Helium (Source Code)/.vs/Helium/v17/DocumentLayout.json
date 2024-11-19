@@ -7,12 +7,12 @@
       "RelativeMoniker": "D:0:0:{E685A0B5-FA65-4A86-AE35-BAA1955B2EAA}|Helium.csproj|solutionrelative:helium\\helium.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E685A0B5-FA65-4A86-AE35-BAA1955B2EAA}|Helium.csproj|C:\\Users\\adant\\OneDrive\\Documents\\GitHub\\Helium\\Helium (Source Code)\\helium\\helium.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E685A0B5-FA65-4A86-AE35-BAA1955B2EAA}|Helium.csproj|solutionrelative:helium\\helium.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E685A0B5-FA65-4A86-AE35-BAA1955B2EAA}|Helium.csproj|C:\\Users\\adant\\OneDrive\\Documents\\GitHub\\Helium\\Helium (Source Code)\\helium\\helium.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{E685A0B5-FA65-4A86-AE35-BAA1955B2EAA}|Helium.csproj|solutionrelative:helium\\helium.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E685A0B5-FA65-4A86-AE35-BAA1955B2EAA}|Helium.csproj|C:\\Users\\adant\\OneDrive\\Documents\\GitHub\\Helium\\Helium (Source Code)\\helium\\helium.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E685A0B5-FA65-4A86-AE35-BAA1955B2EAA}|Helium.csproj|solutionrelative:helium\\helium.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|Helium||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
@@ -36,9 +36,9 @@
               "Title": "Helium.cs",
               "DocumentMoniker": "C:\\Users\\adant\\OneDrive\\Documents\\GitHub\\Helium\\Helium (Source Code)\\Helium\\Helium.cs",
               "RelativeDocumentMoniker": "Helium\\Helium.cs",
-              "ToolTip": "C:\\Users\\adant\\OneDrive\\Documents\\GitHub\\Helium\\Helium (Source Code)\\Helium\\Helium.cs",
-              "RelativeToolTip": "Helium\\Helium.cs",
-              "ViewState": "AgIAAAQBAAAAAAAAAAApwNEAAAAuAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\adant\\OneDrive\\Documents\\GitHub\\Helium\\Helium (Source Code)\\Helium\\Helium.cs*",
+              "RelativeToolTip": "Helium\\Helium.cs*",
+              "ViewState": "AgIAAOEBAAAAAAAAAAAIwAACAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-05T01:56:40.073Z",
               "IsPinned": true,
@@ -54,25 +54,25 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Helium.cs [Design]",
               "DocumentMoniker": "C:\\Users\\adant\\OneDrive\\Documents\\GitHub\\Helium\\Helium (Source Code)\\Helium\\Helium.cs",
               "RelativeDocumentMoniker": "Helium\\Helium.cs",
-              "ToolTip": "C:\\Users\\adant\\OneDrive\\Documents\\GitHub\\Helium\\Helium (Source Code)\\Helium\\Helium.cs [Design]",
-              "RelativeToolTip": "Helium\\Helium.cs [Design]",
+              "ToolTip": "C:\\Users\\adant\\OneDrive\\Documents\\GitHub\\Helium\\Helium (Source Code)\\Helium\\Helium.cs [Design]*",
+              "RelativeToolTip": "Helium\\Helium.cs [Design]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-09T20:58:58.672Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Helium.Designer.cs",
               "DocumentMoniker": "C:\\Users\\adant\\OneDrive\\Documents\\GitHub\\Helium\\Helium (Source Code)\\Helium\\Helium.Designer.cs",
               "RelativeDocumentMoniker": "Helium\\Helium.Designer.cs",
               "ToolTip": "C:\\Users\\adant\\OneDrive\\Documents\\GitHub\\Helium\\Helium (Source Code)\\Helium\\Helium.Designer.cs",
               "RelativeToolTip": "Helium\\Helium.Designer.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAMwBQAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAMwBQAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-05T02:17:20.661Z",
               "EditorCaption": ""

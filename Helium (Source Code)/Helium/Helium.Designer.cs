@@ -35,11 +35,9 @@ namespace Helium
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.CameraTweaks = new System.Windows.Forms.TabPage();
             this.metroSetLabel4 = new MetroSet_UI.Controls.MetroSetLabel();
-            this.metroSetTrackBar4 = new MetroSet_UI.Controls.MetroSetTrackBar();
-            this.metroSetLabel6 = new MetroSet_UI.Controls.MetroSetLabel();
-            this.metroSetTrackBar5 = new MetroSet_UI.Controls.MetroSetTrackBar();
+            this.CameraFOVSlider = new MetroSet_UI.Controls.MetroSetTrackBar();
             this.metroSetLabel7 = new MetroSet_UI.Controls.MetroSetLabel();
-            this.metroSetTrackBar6 = new MetroSet_UI.Controls.MetroSetTrackBar();
+            this.CameraDistanceSlider = new MetroSet_UI.Controls.MetroSetTrackBar();
             this.metroSetLabel8 = new MetroSet_UI.Controls.MetroSetLabel();
             this.HidePlayerModelSwitch = new MetroSet_UI.Controls.MetroSetSwitch();
             this.Information = new System.Windows.Forms.TabPage();
@@ -101,11 +99,9 @@ namespace Helium
             this.CameraTweaks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.CameraTweaks.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.CameraTweaks.Controls.Add(this.metroSetLabel4);
-            this.CameraTweaks.Controls.Add(this.metroSetTrackBar4);
-            this.CameraTweaks.Controls.Add(this.metroSetLabel6);
-            this.CameraTweaks.Controls.Add(this.metroSetTrackBar5);
+            this.CameraTweaks.Controls.Add(this.CameraFOVSlider);
             this.CameraTweaks.Controls.Add(this.metroSetLabel7);
-            this.CameraTweaks.Controls.Add(this.metroSetTrackBar6);
+            this.CameraTweaks.Controls.Add(this.CameraDistanceSlider);
             this.CameraTweaks.Controls.Add(this.metroSetLabel8);
             this.CameraTweaks.Controls.Add(this.HidePlayerModelSwitch);
             this.CameraTweaks.ForeColor = System.Drawing.Color.White;
@@ -119,7 +115,7 @@ namespace Helium
             // 
             this.metroSetLabel4.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.metroSetLabel4.IsDerivedStyle = true;
-            this.metroSetLabel4.Location = new System.Drawing.Point(14, 66);
+            this.metroSetLabel4.Location = new System.Drawing.Point(14, 114);
             this.metroSetLabel4.Name = "metroSetLabel4";
             this.metroSetLabel4.Size = new System.Drawing.Size(227, 23);
             this.metroSetLabel4.Style = MetroSet_UI.Enums.Style.Light;
@@ -130,74 +126,35 @@ namespace Helium
             this.metroSetLabel4.ThemeAuthor = "Narwin";
             this.metroSetLabel4.ThemeName = "MetroLite";
             // 
-            // metroSetTrackBar4
+            // CameraFOVSlider
             // 
-            this.metroSetTrackBar4.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
-            this.metroSetTrackBar4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.metroSetTrackBar4.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.metroSetTrackBar4.DisabledBorderColor = System.Drawing.Color.Empty;
-            this.metroSetTrackBar4.DisabledHandlerColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(196)))), ((int)(((byte)(196)))));
-            this.metroSetTrackBar4.DisabledValueColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
-            this.metroSetTrackBar4.HandlerColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.metroSetTrackBar4.IsDerivedStyle = true;
-            this.metroSetTrackBar4.Location = new System.Drawing.Point(14, 92);
-            this.metroSetTrackBar4.Maximum = 100;
-            this.metroSetTrackBar4.Minimum = 0;
-            this.metroSetTrackBar4.Name = "metroSetTrackBar4";
-            this.metroSetTrackBar4.Size = new System.Drawing.Size(227, 16);
-            this.metroSetTrackBar4.Style = MetroSet_UI.Enums.Style.Light;
-            this.metroSetTrackBar4.StyleManager = null;
-            this.metroSetTrackBar4.TabIndex = 17;
-            this.metroSetTrackBar4.Text = "metroSetTrackBar4";
-            this.metroSetTrackBar4.ThemeAuthor = "Narwin";
-            this.metroSetTrackBar4.ThemeName = "MetroLite";
-            this.metroSetTrackBar4.Value = 0;
-            this.metroSetTrackBar4.ValueColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            // 
-            // metroSetLabel6
-            // 
-            this.metroSetLabel6.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.metroSetLabel6.IsDerivedStyle = true;
-            this.metroSetLabel6.Location = new System.Drawing.Point(14, 158);
-            this.metroSetLabel6.Name = "metroSetLabel6";
-            this.metroSetLabel6.Size = new System.Drawing.Size(227, 23);
-            this.metroSetLabel6.Style = MetroSet_UI.Enums.Style.Light;
-            this.metroSetLabel6.StyleManager = null;
-            this.metroSetLabel6.TabIndex = 16;
-            this.metroSetLabel6.Text = "Camera Height";
-            this.metroSetLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.metroSetLabel6.ThemeAuthor = "Narwin";
-            this.metroSetLabel6.ThemeName = "MetroLite";
-            // 
-            // metroSetTrackBar5
-            // 
-            this.metroSetTrackBar5.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
-            this.metroSetTrackBar5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.metroSetTrackBar5.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.metroSetTrackBar5.DisabledBorderColor = System.Drawing.Color.Empty;
-            this.metroSetTrackBar5.DisabledHandlerColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(196)))), ((int)(((byte)(196)))));
-            this.metroSetTrackBar5.DisabledValueColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
-            this.metroSetTrackBar5.HandlerColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.metroSetTrackBar5.IsDerivedStyle = true;
-            this.metroSetTrackBar5.Location = new System.Drawing.Point(14, 184);
-            this.metroSetTrackBar5.Maximum = 100;
-            this.metroSetTrackBar5.Minimum = 0;
-            this.metroSetTrackBar5.Name = "metroSetTrackBar5";
-            this.metroSetTrackBar5.Size = new System.Drawing.Size(227, 16);
-            this.metroSetTrackBar5.Style = MetroSet_UI.Enums.Style.Light;
-            this.metroSetTrackBar5.StyleManager = null;
-            this.metroSetTrackBar5.TabIndex = 15;
-            this.metroSetTrackBar5.Text = "metroSetTrackBar5";
-            this.metroSetTrackBar5.ThemeAuthor = "Narwin";
-            this.metroSetTrackBar5.ThemeName = "MetroLite";
-            this.metroSetTrackBar5.Value = 0;
-            this.metroSetTrackBar5.ValueColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.CameraFOVSlider.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            this.CameraFOVSlider.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CameraFOVSlider.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.CameraFOVSlider.DisabledBorderColor = System.Drawing.Color.Empty;
+            this.CameraFOVSlider.DisabledHandlerColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(196)))), ((int)(((byte)(196)))));
+            this.CameraFOVSlider.DisabledValueColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            this.CameraFOVSlider.HandlerColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.CameraFOVSlider.IsDerivedStyle = true;
+            this.CameraFOVSlider.Location = new System.Drawing.Point(14, 140);
+            this.CameraFOVSlider.Maximum = 135;
+            this.CameraFOVSlider.Minimum = 15;
+            this.CameraFOVSlider.Name = "CameraFOVSlider";
+            this.CameraFOVSlider.Size = new System.Drawing.Size(227, 16);
+            this.CameraFOVSlider.Style = MetroSet_UI.Enums.Style.Light;
+            this.CameraFOVSlider.StyleManager = null;
+            this.CameraFOVSlider.TabIndex = 17;
+            this.CameraFOVSlider.Text = "metroSetTrackBar4";
+            this.CameraFOVSlider.ThemeAuthor = "Narwin";
+            this.CameraFOVSlider.ThemeName = "MetroLite";
+            this.CameraFOVSlider.Value = 60;
+            this.CameraFOVSlider.ValueColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
             // 
             // metroSetLabel7
             // 
             this.metroSetLabel7.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.metroSetLabel7.IsDerivedStyle = true;
-            this.metroSetLabel7.Location = new System.Drawing.Point(14, 112);
+            this.metroSetLabel7.Location = new System.Drawing.Point(14, 160);
             this.metroSetLabel7.Name = "metroSetLabel7";
             this.metroSetLabel7.Size = new System.Drawing.Size(227, 23);
             this.metroSetLabel7.Style = MetroSet_UI.Enums.Style.Light;
@@ -208,29 +165,29 @@ namespace Helium
             this.metroSetLabel7.ThemeAuthor = "Narwin";
             this.metroSetLabel7.ThemeName = "MetroLite";
             // 
-            // metroSetTrackBar6
+            // CameraDistanceSlider
             // 
-            this.metroSetTrackBar6.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
-            this.metroSetTrackBar6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.metroSetTrackBar6.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.metroSetTrackBar6.DisabledBorderColor = System.Drawing.Color.Empty;
-            this.metroSetTrackBar6.DisabledHandlerColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(196)))), ((int)(((byte)(196)))));
-            this.metroSetTrackBar6.DisabledValueColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
-            this.metroSetTrackBar6.HandlerColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.metroSetTrackBar6.IsDerivedStyle = true;
-            this.metroSetTrackBar6.Location = new System.Drawing.Point(14, 138);
-            this.metroSetTrackBar6.Maximum = 100;
-            this.metroSetTrackBar6.Minimum = 0;
-            this.metroSetTrackBar6.Name = "metroSetTrackBar6";
-            this.metroSetTrackBar6.Size = new System.Drawing.Size(227, 16);
-            this.metroSetTrackBar6.Style = MetroSet_UI.Enums.Style.Light;
-            this.metroSetTrackBar6.StyleManager = null;
-            this.metroSetTrackBar6.TabIndex = 13;
-            this.metroSetTrackBar6.Text = "metroSetTrackBar6";
-            this.metroSetTrackBar6.ThemeAuthor = "Narwin";
-            this.metroSetTrackBar6.ThemeName = "MetroLite";
-            this.metroSetTrackBar6.Value = 0;
-            this.metroSetTrackBar6.ValueColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.CameraDistanceSlider.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            this.CameraDistanceSlider.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CameraDistanceSlider.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.CameraDistanceSlider.DisabledBorderColor = System.Drawing.Color.Empty;
+            this.CameraDistanceSlider.DisabledHandlerColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(196)))), ((int)(((byte)(196)))));
+            this.CameraDistanceSlider.DisabledValueColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            this.CameraDistanceSlider.HandlerColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.CameraDistanceSlider.IsDerivedStyle = true;
+            this.CameraDistanceSlider.Location = new System.Drawing.Point(14, 186);
+            this.CameraDistanceSlider.Maximum = 100;
+            this.CameraDistanceSlider.Minimum = 1;
+            this.CameraDistanceSlider.Name = "CameraDistanceSlider";
+            this.CameraDistanceSlider.Size = new System.Drawing.Size(227, 16);
+            this.CameraDistanceSlider.Style = MetroSet_UI.Enums.Style.Light;
+            this.CameraDistanceSlider.StyleManager = null;
+            this.CameraDistanceSlider.TabIndex = 13;
+            this.CameraDistanceSlider.Text = "metroSetTrackBar6";
+            this.CameraDistanceSlider.ThemeAuthor = "Narwin";
+            this.CameraDistanceSlider.ThemeName = "MetroLite";
+            this.CameraDistanceSlider.Value = 23;
+            this.CameraDistanceSlider.ValueColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
             // 
             // metroSetLabel8
             // 
@@ -283,9 +240,9 @@ namespace Helium
             this.Information.Controls.Add(this.proID);
             this.Information.Controls.Add(this.procIDLabel);
             this.Information.ForeColor = System.Drawing.Color.White;
-            this.Information.Location = new System.Drawing.Point(0, 40);
+            this.Information.Location = new System.Drawing.Point(0, 30);
             this.Information.Name = "Information";
-            this.Information.Size = new System.Drawing.Size(200, 60);
+            this.Information.Size = new System.Drawing.Size(482, 215);
             this.Information.TabIndex = 1;
             this.Information.Text = "Information";
             // 
@@ -483,7 +440,7 @@ namespace Helium
             this.cameraInfoLabel.IsDerivedStyle = true;
             this.cameraInfoLabel.Location = new System.Drawing.Point(303, 27);
             this.cameraInfoLabel.Name = "cameraInfoLabel";
-            this.cameraInfoLabel.Size = new System.Drawing.Size(143, 102);
+            this.cameraInfoLabel.Size = new System.Drawing.Size(152, 102);
             this.cameraInfoLabel.Style = MetroSet_UI.Enums.Style.Light;
             this.cameraInfoLabel.StyleManager = null;
             this.cameraInfoLabel.TabIndex = 6;
@@ -620,11 +577,9 @@ namespace Helium
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.TabPage CameraTweaks;
         private MetroSet_UI.Controls.MetroSetLabel metroSetLabel4;
-        private MetroSet_UI.Controls.MetroSetTrackBar metroSetTrackBar4;
-        private MetroSet_UI.Controls.MetroSetLabel metroSetLabel6;
-        private MetroSet_UI.Controls.MetroSetTrackBar metroSetTrackBar5;
+        private MetroSet_UI.Controls.MetroSetTrackBar CameraFOVSlider;
         private MetroSet_UI.Controls.MetroSetLabel metroSetLabel7;
-        private MetroSet_UI.Controls.MetroSetTrackBar metroSetTrackBar6;
+        private MetroSet_UI.Controls.MetroSetTrackBar CameraDistanceSlider;
         private MetroSet_UI.Controls.MetroSetLabel metroSetLabel8;
         private MetroSet_UI.Controls.MetroSetSwitch HidePlayerModelSwitch;
         private System.Windows.Forms.TabPage Information;

@@ -266,57 +266,6 @@ namespace Silicon
             InterpolateCameraMovement(lookAtXAddress, lookAtYAddress, lookAtZAddress);
             InterpolateCameraRotation(pitchAddress, yawAddress);
 
-            currentCameraLookAtX = m.ReadFloat(lookAtXAddress);
-            currentCameraLookAtY = m.ReadFloat(lookAtYAddress);
-            currentCameraLookAtZ = m.ReadFloat(lookAtZAddress);
-
-            // Calculate the direction vector towards the target
-            cameraMoveDirectionX = targetCameraLookAtX - currentCameraLookAtX;
-            cameraMoveDirectionY = targetCameraLookAtY - currentCameraLookAtY;
-            cameraMoveDirectionZ = targetCameraLookAtZ - currentCameraLookAtZ;
-            //Normalize distance
-            cameraMoveDistance = Math.Sqrt(cameraMoveDirectionX * cameraMoveDirectionX + cameraMoveDirectionY * cameraMoveDirectionY + cameraMoveDirectionZ * cameraMoveDirectionZ);
-
-            //Interpolate and move to target location
-            //Snap to target if close enough
-            if (cameraMoveDistance < cameraMoveSpeed)
-            {
-                currentCameraLookAtX = targetCameraLookAtX;
-                currentCameraLookAtY = targetCameraLookAtY;
-                currentCameraLookAtZ = targetCameraLookAtZ;
-            }
-            else
-            {
-                // Normalize the direction vector and move towards the target
-                currentCameraLookAtX += cameraMoveDirectionX / cameraMoveDistance * cameraMoveSpeed;
-                currentCameraLookAtY += cameraMoveDirectionY / cameraMoveDistance * cameraMoveSpeed;
-                currentCameraLookAtZ += cameraMoveDirectionZ / cameraMoveDistance * cameraMoveSpeed;
-            }
-
-            currentCameraPitch = m.ReadFloat(pitchAddress);
-            currentCameraYaw = m.ReadFloat(yawAddress);
-
-            // Calculate the direction vector towards the target
-            cameraRotateDirectionPitch = targetCameraPitch - currentCameraPitch;
-            cameraRotateDirectionYaw = targetCameraYaw - currentCameraYaw;
-            //Normalize distance
-            cameraRotateDistance = Math.Sqrt(cameraRotateDirectionPitch * cameraRotateDirectionPitch + cameraRotateDirectionYaw * cameraRotateDirectionYaw);
-
-            //Interpolate and move to target location
-            //Snap to target if close enough
-            if (cameraRotateDistance < cameraRotateSpeed)
-            {
-                currentCameraPitch = targetCameraPitch;
-                currentCameraYaw = targetCameraYaw;
-            }
-            else
-            {
-                // Normalize the direction vector and move towards the target
-                currentCameraPitch += cameraRotateDirectionPitch / cameraRotateDistance * cameraRotateSpeed;
-                currentCameraYaw += cameraRotateDirectionYaw / cameraRotateDistance * cameraRotateSpeed;
-            }
-
-
 
             //initial injection script that lays the foundation for the UI to access the camera settings addresses
             if (scriptInjected == false && getStatus.Text == "CONNECTED")
@@ -577,15 +526,59 @@ namespace Silicon
         {
             pressedKeys.Remove(e.KeyCode);
         }
-
         private void InterpolateCameraMovement(string lookAtXAddress,string lookAtYAddress, string lookAtZAddress)
         {
+            currentCameraLookAtX = m.ReadFloat(lookAtXAddress);
+            currentCameraLookAtY = m.ReadFloat(lookAtYAddress);
+            currentCameraLookAtZ = m.ReadFloat(lookAtZAddress);
 
+            // Calculate the direction vector towards the target
+            cameraMoveDirectionX = targetCameraLookAtX - currentCameraLookAtX;
+            cameraMoveDirectionY = targetCameraLookAtY - currentCameraLookAtY;
+            cameraMoveDirectionZ = targetCameraLookAtZ - currentCameraLookAtZ;
+            //Normalize distance
+            cameraMoveDistance = Math.Sqrt(cameraMoveDirectionX * cameraMoveDirectionX + cameraMoveDirectionY * cameraMoveDirectionY + cameraMoveDirectionZ * cameraMoveDirectionZ);
+
+            //Interpolate and move to target location
+            //Snap to target if close enough
+            if (cameraMoveDistance < cameraMoveSpeed)
+            {
+                currentCameraLookAtX = targetCameraLookAtX;
+                currentCameraLookAtY = targetCameraLookAtY;
+                currentCameraLookAtZ = targetCameraLookAtZ;
+            }
+            else
+            {
+                // Normalize the direction vector and move towards the target
+                currentCameraLookAtX += cameraMoveDirectionX / cameraMoveDistance * cameraMoveSpeed;
+                currentCameraLookAtY += cameraMoveDirectionY / cameraMoveDistance * cameraMoveSpeed;
+                currentCameraLookAtZ += cameraMoveDirectionZ / cameraMoveDistance * cameraMoveSpeed;
+            }           
         }
-
         private void InterpolateCameraRotation(string pitchAddress, string yawAddress)
         {
-            
+            currentCameraPitch = m.ReadFloat(pitchAddress);
+            currentCameraYaw = m.ReadFloat(yawAddress);
+
+            // Calculate the direction vector towards the target
+            cameraRotateDirectionPitch = targetCameraPitch - currentCameraPitch;
+            cameraRotateDirectionYaw = targetCameraYaw - currentCameraYaw;
+            //Normalize distance
+            cameraRotateDistance = Math.Sqrt(cameraRotateDirectionPitch * cameraRotateDirectionPitch + cameraRotateDirectionYaw * cameraRotateDirectionYaw);
+
+            //Interpolate and move to target location
+            //Snap to target if close enough
+            if (cameraRotateDistance < cameraRotateSpeed)
+            {
+                currentCameraPitch = targetCameraPitch;
+                currentCameraYaw = targetCameraYaw;
+            }
+            else
+            {
+                // Normalize the direction vector and move towards the target
+                currentCameraPitch += cameraRotateDirectionPitch / cameraRotateDistance * cameraRotateSpeed;
+                currentCameraYaw += cameraRotateDirectionYaw / cameraRotateDistance * cameraRotateSpeed;
+            }
         }
 
         private void CameraMoveSpeedSlider_Scroll(object sender)

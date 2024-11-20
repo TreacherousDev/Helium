@@ -70,7 +70,7 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Helium.ico</ApplicationIcon>
+    <ApplicationIcon>Silicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Memory, Version=1.2.27.0, Culture=neutral, processorArchitecture=MSIL">
@@ -106,16 +106,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helium\Helium.cs">
+    <Compile Include="Silicon\Silicon.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Helium\Helium.Designer.cs">
-      <DependentUpon>Helium.cs</DependentUpon>
+    <Compile Include="Silicon\Silicon.Designer.cs">
+      <DependentUpon>Silicon.cs</DependentUpon>
     </Compile>
     <Compile Include="Config\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Helium\Helium.resx">
-      <DependentUpon>Helium.cs</DependentUpon>
+    <EmbeddedResource Include="Silicon\Silicon.resx">
+      <DependentUpon>Silicon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -156,7 +156,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Helium.ico" />
+    <Content Include="Silicon.ico" />
     <None Include="Resources\info %282%29.png" />
     <None Include="Resources\%24this.Icon.ico" />
   </ItemGroup>

@@ -16,7 +16,7 @@ namespace Helium
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Helium.HeliumForm());
+            Application.Run(new Silicon.SiliconForm());
         }
     }
 }
